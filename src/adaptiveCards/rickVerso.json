@@ -1,0 +1,74 @@
+{
+  "type": "AdaptiveCard",
+  "speak": "3 minute energy flow with kayo video",
+  "version": "1.5",
+  "body": [
+      {
+          "type": "Image",
+          "url": "https://th.bing.com/th/id/OIP.bYzI7_jHo7RJvEq4LHHGfQHaEK?rs=1&pid=ImgDetMain",
+          "altText": "3 Minute Energy Flow with Kayo Video"
+      },
+      {
+          "type": "TextBlock",
+          "text": "Ficha del sujeto en búsqueda por Oboria",
+          "wrap": true,
+          "size": "Large",
+          "weight": "Bolder"
+      },
+      {
+          "type": "ColumnSet",
+          "columns": [
+              {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                      {
+                          "type": "Image",
+                          "url": "https://rickandmortyapi.com/api/character/avatar/${characterDetails.id}.jpeg",
+                          "width": "80px",
+                          "height": "80px",
+                          "style": "Person",
+                          "altText": "Avatar del personaje"
+                      }
+                  ],
+                  "verticalContentAlignment": "Center"
+              },
+              {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                      {
+                          "type": "TextBlock",
+                          "text": "${characterDetails.name}",
+                          "wrap": true
+                      }
+                  ],
+                  "spacing": "Medium",
+                  "verticalContentAlignment": "Center"
+              }
+          ]
+      },
+      {
+          "type": "TextBlock",
+          "wrap": true,
+          "text": "Ficha del sujeto:\nEspecie: {species}\nGénero: ${characterDetails.gender}\nEstado: ${characterDetails.status}"
+      },
+      {
+          "type": "ActionSet",
+          "actions": [
+              {
+                  "type": "Action.OpenUrl",
+                  "title": "Open",
+                  "url": "https://www.microsoft.com/"
+              },
+              {
+                  "type": "Action.OpenUrl",
+                  "title": "Remind me",
+                  "url": "https://www.microsoft.com/",
+                  "iconUrl": "icon:AlertUrgent"
+              }
+          ]
+      }
+  ],
+  "$schema": "https://adaptivecards.io/schemas/adaptive-card.json"
+}
