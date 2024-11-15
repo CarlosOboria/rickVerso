@@ -6,8 +6,7 @@
         {
             "type": "Image",
             "url": "https://th.bing.com/th/id/OIP.bYzI7_jHo7RJvEq4LHHGfQHaEK?rs=1&pid=ImgDetMain",
-            "altText": "3 Minute Energy Flow with Kayo Video",
-            "style": "RoundedCorners"
+            "altText": "3 Minute Energy Flow with Kayo Video"
         },
         {
             "type": "TextBlock",
@@ -53,11 +52,11 @@
             "type": "TextBlock",
             "wrap": true,
             "text": "Ficha del sujeto:\n",
-            "targetWidth": "Standard",
             "maxLines": 0,
             "style": "heading",
             "horizontalAlignment": "Center",
-            "fontType": "Monospace"
+            "fontType": "Monospace",
+            "weight": "Bolder"
         },
         {
             "type": "TextBlock",
@@ -85,8 +84,8 @@
             "actions": [
                 {
                     "type": "Action.OpenUrl",
-                    "title": "Open",
-                    "url": "https://www.microsoft.com/"
+                    "title": "Encontrado",
+                    "url": "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWdnenh3bml5MG1sYmxobnphMWIxaXNxbWZyMmkzeGw2ZnhkZnh6MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Y4avwKekkjNgg9fzaP/giphy.webp"
                 },
                 {
                     "type": "Action.OpenUrl",
@@ -94,8 +93,7 @@
                     "url": "https://www.microsoft.com/",
                     "iconUrl": "icon:AlertUrgent"
                 }
-            ],
-            "horizontalAlignment": "Right"
+            ]
         }
     ],
     "$schema": "https://adaptivecards.io/schemas/adaptive-card.json"

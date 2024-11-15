@@ -20,10 +20,11 @@ class SearchApp extends TeamsActivityHandler {
     })}`);
     
     console.log("response es:", response);
+    console.log(" *****FIN de response es:");
 
     // Filter the results
     const characterDetails = response.data.results[0];
-    console.log("characterDetails es:", characterDetails);
+    //console.log("characterDetails es:", characterDetails);
 
     if (!characterDetails) {
       throw new Error("No se encontró ningún personaje con ese nombre.");

@@ -31,7 +31,8 @@
                     "id": "searchQuery",
                     "context": [
                         "compose",
-                        "commandBox"
+                        "commandBox",
+                        "message"
                     ],
                     "description": "Test command to run query",
                     "title": "Search",
