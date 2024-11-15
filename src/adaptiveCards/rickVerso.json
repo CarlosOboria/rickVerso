@@ -90,7 +90,7 @@
                 {
                     "type": "Action.OpenUrl",
                     "title": "Remind me",
-                    "url": "https://www.microsoft.com/",
+                    "url": "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTlycWFsaWJoNXhvMDg3b3MxY2E3OXN2YmNlaW4wMGdqajVkYWN5aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WVudyGEaizNeg/giphy.webp",
                     "iconUrl": "icon:AlertUrgent"
                 }
             ]

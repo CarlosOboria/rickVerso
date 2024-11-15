@@ -14,52 +14,64 @@ class SearchApp extends TeamsActivityHandler {
     // Get the search query
     const searchQuery = query.parameters[0].value.toLowerCase();
 
-    // Execute search logic
-    const response = await axios.get(`https://rickandmortyapi.com/api/character/?${querystring.stringify({
-      name: searchQuery,
-      size:8
-    })}`);
-    
-    //const results = response.data.results.slice(0, 8);
+    try {
+      // Execute search logic
+      const response = await axios.get(
+        `https://rickandmortyapi.com/api/character/?${querystring.stringify({
+          name: searchQuery,
+        })}`
+      );
 
-    // Filter the results
-    const characterDetails = response.data.results[0];
-    
+      // Limit results to 8
+      const results = response.data.results.slice(0, 8);
 
-    if (!characterDetails) {
-      throw new Error("No se encontró ningún personaje con ese nombre.");
+      if (!results.length) {
+        throw new Error("No se encontraron personajes con ese nombre.");
+      }
+
+      // Generate attachments for each result
+      const attachments = results.map((character) => {
+        // Create a Hero Card for the preview
+        const preview = CardFactory.heroCard(
+          character.name.toUpperCase(),
+          `Status: ${character.status} | Gender: ${character.gender}`,
+          [`https://rickandmortyapi.com/api/character/avatar/${character.id}.jpeg`]
+        );
+
+        // Create an Adaptive Card based on the template
+        const template = new ACData.Template(rickVerso);
+        const card = template.expand({
+          $root: {
+            id: character.id,
+            name: character.name,
+            status: character.status,
+            gender: character.gender,
+            species: character.species,
+          },
+        });
+
+        // Combine Hero Card and Adaptive Card in the attachment
+        return { ...CardFactory.adaptiveCard(card), preview };
+      });
+
+      // Return the results using the attachments
+      return {
+        composeExtension: {
+          type: "result",
+          attachmentLayout: "list", // You can also use 'grid' for a grid layout
+          attachments: attachments,
+        },
+      };
+    } catch (error) {
+      console.error("Error fetching characters:", error.message);
+
+      return {
+        composeExtension: {
+          type: "message",
+          text: "Hubo un error al realizar la búsqueda. Por favor, inténtalo de nuevo.",
+        },
+      };
     }
-
-    // Create a Hero Card for the preview
-    const preview = CardFactory.heroCard(
-      characterDetails.name.toUpperCase(),
-      `status: ${characterDetails.status} | Gender: ${characterDetails.gender}`,
-      [`https://rickandmortyapi.com/api/character/avatar/${characterDetails.id}.jpeg`]
-    );
-
-    // Create an Adaptive Card based on the template
-    const template = new ACData.Template(rickVerso);
-    const card = template.expand({
-      $root: {
-        id: characterDetails.id,
-        name: characterDetails.name,
-        status: characterDetails.status,
-        gender: characterDetails.gender,
-        species: characterDetails.species
-      },
-    });
-
-    // Combine Hero Card and Adaptive Card in the attachment
-    const attachment = { ...CardFactory.adaptiveCard(card), preview };
-
-    // Return the results using the attachment
-    return {
-      composeExtension: {
-        type: "result",
-        attachmentLayout: "list",
-        attachments: [attachment],
-      },
-    };
   }
 }
 
