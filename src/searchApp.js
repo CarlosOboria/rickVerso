@@ -16,15 +16,15 @@ class SearchApp extends TeamsActivityHandler {
 
     // Execute search logic
     const response = await axios.get(`https://rickandmortyapi.com/api/character/?${querystring.stringify({
-      name: searchQuery
+      name: searchQuery,
+      size:8
     })}`);
     
-    console.log("response es:", response);
-    console.log(" *****FIN de response es:");
+    //const results = response.data.results.slice(0, 8);
 
     // Filter the results
     const characterDetails = response.data.results[0];
-    //console.log("characterDetails es:", characterDetails);
+    
 
     if (!characterDetails) {
       throw new Error("No se encontró ningún personaje con ese nombre.");
